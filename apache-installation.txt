@@ -96,3 +96,5 @@ echo '<h1>Welcome to Level Up in Tech</h1>' >> index.html
 echo '<h3>Red Team</h3>' >> index.html
 echo '</body>' >> index.html
 echo '</html>' >> index.html
+#make it executable
+chmod +x webserver.sh
