@@ -1,0 +1,98 @@
+#!/bin/bash
+
+Syntax used in scripts to indicate an interpreter for execution under UNIX and Linux operating systems. It ensures that bash will be used to interpret the script, even it it is executed under another shell.
+#!/bin/bash
+Step 2: Show the packages in need of update on the CentOS server
+
+sudo yum check-update
+yum is a free and open-source command-line package-management utility
+Step 3: Update the packages
+
+sudo yum update
+Step 4: Install an Apache HTTP Web Server
+
+sudo yum -y install httpd
+Step 5: Enable the Apache Web Server
+
+Start the server by entering the following command
+sudo systemctl start httpd
+Configure Apache to run on startup
+sudo systemctl enable httpd
+Check the status of the Apache server
+sudo systemctl status httpd
+Step 6: Install a firewall
+
+More on the firewall and its services on Roadblocks and Hurdles at the end of this article
+sudo yum install firewalld
+Step 7: Enable the firewall
+
+Start the firewall
+sudo systemctl start firewalld
+Check the status of the firewall
+systemctl status firewalld
+Step 8: Add HTTP and HTTPs services to the firewall
+
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+Step 9: Reload the firewall
+
+sudo firewall-cmd --reload
+Step 10: Get the web server’s IP address
+
+curl -4 icanhazip.com
+Step 11: Enable Permissions to create and edit the HTML file
+
+sudo chown -R $USER:$USER /var/www
+More on chown in the Roadblocks and Hurdles below
+Step 12: Create a basic landing HTML page and save the bash script
+
+cd var/www/html
+echo '<!DOCTYPE html>' > index.html
+echo '<html>' >> index.html
+echo '<head>' >> index.html
+echo '<title>Level It Up</title>' >> index.html
+echo '<meta charset="UTF-8">' >> index.html
+echo '</head>' >> index.html
+echo '<body>' >> index.html
+echo '<h1>Welcome to Level Up in Tech</h1>' >> index.html
+echo '<h3>Red Team</h3>' >> index.html
+echo '</body>' >> index.html
+echo '</html>' >> index.html
+use the echo command to initially create the index.html file and add information to the landing page
+Here is complete script with descriptions for what the commands are doing:
+
+#!/bin/bash
+# package updates
+sudo yum check-update
+sudo yum update 
+# apache installation, enabling and status check
+sudo yum -y install httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo systemctl status httpd | grep Active
+# firewall installation, start and status check
+sudo yum install firewalld
+sudo systemctl start firewalld
+sudo systemctl status firewalld | grep Active
+# adding http and https services
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+# reloading the firewall
+sudo firewall-cmd --reload
+# acquiring the ip address for access to the web server
+echo "this is the public IP address:" `curl -4 icanhazip.com`
+# adding the needed permissions for creating and editing the index.html file
+sudo chown -R $USER:$USER /var/www
+# creating the html landing page
+cd /var/www/html/
+echo '<!DOCTYPE html>' > index.html
+echo '<html>' >> index.html
+echo '<head>' >> index.html
+echo '<title>Level It Up</title>' >> index.html
+echo '<meta charset="UTF-8">' >> index.html
+echo '</head>' >> index.html
+echo '<body>' >> index.html
+echo '<h1>Welcome to Level Up in Tech</h1>' >> index.html
+echo '<h3>Red Team</h3>' >> index.html
+echo '</body>' >> index.html
+echo '</html>' >> index.html
